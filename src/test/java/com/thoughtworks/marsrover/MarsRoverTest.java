@@ -42,7 +42,7 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void should_return_y_plus_1_given_command_is_M_and_facing_is_N(){
+    public void should_return_y_plus_1_given_command_is_M_and_facing_is_N() {
         MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.N).build());
 
         Command command = new Command("M");
@@ -51,5 +51,17 @@ public class MarsRoverTest {
         Assert.assertEquals(0, position.getX());
         Assert.assertEquals(1, position.getY());
         Assert.assertEquals(Direction.N, position.getDirection());
+    }
+
+    @Test
+    public void should_return_y_minus_1_given_command_is_M_and_facing_is_S() {
+        MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.S).build());
+
+        Command command = new Command("M");
+        Position position = marsRover.execute(command);
+
+        Assert.assertEquals(0, position.getX());
+        Assert.assertEquals(-1, position.getY());
+        Assert.assertEquals(Direction.S, position.getDirection());
     }
 }
