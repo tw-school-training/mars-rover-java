@@ -160,4 +160,16 @@ public class MarsRoverTest {
         Assert.assertEquals(0, position.getY());
         Assert.assertEquals(Direction.E, position.getDirection());
     }
+
+    @Test
+    public void should_return_correct_location_and_direction_given_command_is_MLMMRMMML_and_facing_is_N() {
+        MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.N).build());
+
+        Command command = new Command("MLMMRMMML");//y+1,W,x-1,x-1,N,y+1,y+1,y+1,W
+        Position position = marsRover.execute(command);
+
+        Assert.assertEquals(-2, position.getX());
+        Assert.assertEquals(4, position.getY());
+        Assert.assertEquals(Direction.W, position.getDirection());
+    }
 }

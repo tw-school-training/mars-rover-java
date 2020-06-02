@@ -28,6 +28,7 @@ public class Command {
                 break;
             case "R":
                 result = right(current);
+                break;
         }
         return result;
     }
