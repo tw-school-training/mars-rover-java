@@ -25,24 +25,29 @@ public class Command {
                 break;
             case "L":
                 result = left(current);
-        }
-
-        if ("R".equals(command) && current.getDirection() == Direction.E) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.S).build();
-        }
-
-        if ("R".equals(command) && current.getDirection() == Direction.S) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.W).build();
-        }
-
-        if ("R".equals(command) && current.getDirection() == Direction.W) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.N).build();
-        }
-
-        if ("R".equals(command) && current.getDirection() == Direction.N) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.E).build();
+                break;
+            case "R":
+                result = right(current);
         }
         return result;
+    }
+
+    private Position right(Position current) {
+        Direction newDirection = current.getDirection();
+        switch (current.getDirection()) {
+            case E:
+                newDirection = Direction.S;
+                break;
+            case S:
+                newDirection = Direction.W;
+                break;
+            case W:
+                newDirection = Direction.N;
+                break;
+            case N:
+                newDirection = Direction.E;
+        }
+        return Position.builder().x(current.getX()).y(current.getY()).direction(newDirection).build();
     }
 
     private Position left(Position current) {
