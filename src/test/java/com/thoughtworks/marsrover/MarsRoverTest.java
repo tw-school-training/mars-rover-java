@@ -136,4 +136,16 @@ public class MarsRoverTest {
         Assert.assertEquals(0, position.getY());
         Assert.assertEquals(Direction.W, position.getDirection());
     }
+
+    @Test
+    public void should_return_facing_N_given_command_is_R_and_facing_is_W() {
+        MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.W).build());
+
+        Command command = new Command("R");
+        Position position = marsRover.execute(command);
+
+        Assert.assertEquals(0, position.getX());
+        Assert.assertEquals(0, position.getY());
+        Assert.assertEquals(Direction.N, position.getDirection());
+    }
 }
