@@ -76,4 +76,6 @@ public class MarsRoverTest {
         Assert.assertEquals(0, position.getY());
         Assert.assertEquals(Direction.N, position.getDirection());
     }
+
+
 }
