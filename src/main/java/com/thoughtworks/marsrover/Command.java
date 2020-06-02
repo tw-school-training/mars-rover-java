@@ -54,6 +54,10 @@ public class Command {
         if ("R".equals(command) && current.getDirection() == Direction.E) {
             result = Position.builder().x(current.getX()).y(0).direction(Direction.S).build();
         }
+
+        if ("R".equals(command) && current.getDirection() == Direction.S) {
+            result = Position.builder().x(current.getX()).y(0).direction(Direction.W).build();
+        }
         return result;
     }
 }
