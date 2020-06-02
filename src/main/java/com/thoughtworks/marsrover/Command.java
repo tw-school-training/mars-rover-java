@@ -18,18 +18,20 @@ public class Command {
         }
 
         Position result = current;
-
-        switch (command) {
-            case "M":
-                result = move(current);
-                break;
-            case "L":
-                result = left(current);
-                break;
-            case "R":
-                result = right(current);
-                break;
+        for (int commandIndex = 0; commandIndex < command.length(); commandIndex++) {
+            switch (command.charAt(commandIndex)) {
+                case 'M':
+                    result = move(result);
+                    break;
+                case 'L':
+                    result = left(result);
+                    break;
+                case 'R':
+                    result = right(result);
+                    break;
+            }
         }
+
         return result;
     }
 
