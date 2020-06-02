@@ -38,6 +38,10 @@ public class Command {
         if ("L".equals(command) && current.getDirection() == Direction.E) {
             result = Position.builder().x(current.getX()).y(0).direction(Direction.N).build();
         }
+
+        if ("L".equals(command) && current.getDirection() == Direction.N) {
+            result = Position.builder().x(current.getX()).y(0).direction(Direction.W).build();
+        }
         return result;
     }
 }
