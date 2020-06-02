@@ -22,22 +22,9 @@ public class Command {
         switch (command) {
             case "M":
                 result = move(current);
-        }
-
-        if ("L".equals(command) && current.getDirection() == Direction.E) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.N).build();
-        }
-
-        if ("L".equals(command) && current.getDirection() == Direction.N) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.W).build();
-        }
-
-        if ("L".equals(command) && current.getDirection() == Direction.W) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.S).build();
-        }
-
-        if ("L".equals(command) && current.getDirection() == Direction.S) {
-            result = Position.builder().x(current.getX()).y(0).direction(Direction.E).build();
+                break;
+            case "L":
+                result = left(current);
         }
 
         if ("R".equals(command) && current.getDirection() == Direction.E) {
@@ -56,6 +43,24 @@ public class Command {
             result = Position.builder().x(current.getX()).y(0).direction(Direction.E).build();
         }
         return result;
+    }
+
+    private Position left(Position current) {
+        Direction newDirection = current.getDirection();
+        switch (current.getDirection()) {
+            case E:
+                newDirection = Direction.N;
+                break;
+            case N:
+                newDirection = Direction.W;
+                break;
+            case W:
+                newDirection = Direction.S;
+                break;
+            case S:
+                newDirection = Direction.E;
+        }
+        return Position.builder().x(current.getX()).y(current.getY()).direction(newDirection).build();
     }
 
     private Position move(Position current) {
