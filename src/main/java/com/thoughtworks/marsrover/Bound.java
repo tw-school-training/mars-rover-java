@@ -8,4 +8,5 @@ import lombok.Data;
 public class Bound {
     private Integer maxY;
     private Integer minY;
+    private Integer maxX;
 }

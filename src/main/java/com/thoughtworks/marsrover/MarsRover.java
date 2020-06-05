@@ -94,7 +94,9 @@ public class MarsRover {
         int y = current.getY();
         switch (current.getDirection()) {
             case E:
-                x++;
+                if (x < bound.getMaxX()) {
+                    x++;
+                }
                 break;
             case W:
                 x--;
