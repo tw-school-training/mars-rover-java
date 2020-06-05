@@ -105,7 +105,10 @@ public class MarsRover {
                 }
                 break;
             case S:
-                y--;
+                if (y > bound.getMinY()) {
+                    y--;
+                }
+
         }
         return Position.builder().x(x).y(y).direction(current.getDirection()).build();
     }

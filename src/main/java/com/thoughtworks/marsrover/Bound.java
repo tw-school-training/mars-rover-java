@@ -7,4 +7,5 @@ import lombok.Data;
 @Builder
 public class Bound {
     private Integer maxY;
+    private Integer minY;
 }
