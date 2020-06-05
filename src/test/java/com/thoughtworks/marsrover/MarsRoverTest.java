@@ -164,7 +164,7 @@ public class MarsRoverTest {
         MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.N).build(),
                 Bound.builder().maxY(2).build());
 
-        Position position = marsRover.execute("MM");//y+1,W,x-1,x-1,N,y+1,y+1,y+1,W
+        Position position = marsRover.execute("MM");
 
         Assert.assertEquals(0, position.getX());
         Assert.assertEquals(2, position.getY());
@@ -176,7 +176,7 @@ public class MarsRoverTest {
         MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.S).build(),
                 Bound.builder().minY(-2).build());
 
-        Position position = marsRover.execute("MM");//y+1,W,x-1,x-1,N,y+1,y+1,y+1,W
+        Position position = marsRover.execute("MM");
 
         Assert.assertEquals(0, position.getX());
         Assert.assertEquals(-2, position.getY());
@@ -188,7 +188,7 @@ public class MarsRoverTest {
         MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.E).build(),
                 Bound.builder().maxX(2).build());
 
-        Position position = marsRover.execute("MM");//y+1,W,x-1,x-1,N,y+1,y+1,y+1,W
+        Position position = marsRover.execute("MM");
 
         Assert.assertEquals(2, position.getX());
         Assert.assertEquals(0, position.getY());
@@ -200,10 +200,23 @@ public class MarsRoverTest {
         MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.W).build(),
                 Bound.builder().minX(-2).build());
 
-        Position position = marsRover.execute("MM");//y+1,W,x-1,x-1,N,y+1,y+1,y+1,W
+        Position position = marsRover.execute("MM");
 
         Assert.assertEquals(-2, position.getX());
         Assert.assertEquals(0, position.getY());
         Assert.assertEquals(Direction.W, position.getDirection());
     }
+
+    @Test
+    public void should_ignore_more_move_given_command_is_MMM_and_at_bound(){
+        MarsRover marsRover = new MarsRover(Position.builder().x(-2).y(0).direction(Direction.W).build(),
+                Bound.builder().minX(-2).build());
+
+        Position position = marsRover.execute("MMM");
+
+        Assert.assertEquals(-2, position.getX());
+        Assert.assertEquals(0, position.getY());
+        Assert.assertEquals(Direction.W, position.getDirection());
+    }
+
 }
