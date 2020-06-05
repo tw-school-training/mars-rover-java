@@ -6,14 +6,14 @@ import org.junit.Test;
 public class MarsRoverTest {
 
     @Test
-    public void should_return_init_place_given_command_is_empty() {
+    public void should_return_init_place_given_initialize_command() {
         MarsRover marsRover = new MarsRover();
 
-        Command command = new Command();
+        Command command = new Command("1 2 N\n");
         Position position = marsRover.execute(command);
 
-        Assert.assertEquals(0, position.getX());
-        Assert.assertEquals(0, position.getY());
+        Assert.assertEquals(1, position.getX());
+        Assert.assertEquals(2, position.getY());
         Assert.assertEquals(Direction.N, position.getDirection());
     }
 

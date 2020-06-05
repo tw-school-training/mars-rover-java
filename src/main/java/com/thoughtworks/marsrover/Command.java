@@ -13,13 +13,19 @@ public class Command {
     }
 
     public Position execute(Position current) {
-        if (command == null) {
-            return current;
-        }
 
+        int index = command.indexOf("\n");
+        String com = command;
+        if (index > -1) {
+            String initializedCommand = command.substring(0, index);
+            current = init(initializedCommand);
+            if (command.length() > index + 1) {
+                com = command.substring(index + 1);
+            }
+        }
         Position result = current;
-        for (int commandIndex = 0; commandIndex < command.length(); commandIndex++) {
-            switch (command.charAt(commandIndex)) {
+        for (int commandIndex = 0; commandIndex < com.length(); commandIndex++) {
+            switch (com.charAt(commandIndex)) {
                 case 'M':
                     result = move(result);
                     break;
@@ -33,6 +39,14 @@ public class Command {
         }
 
         return result;
+    }
+
+    private Position init(String initializedCommand) {
+        String[] position = initializedCommand.split(" ");
+        return Position.builder()
+                .x(Integer.parseInt(position[0]))
+                .y(Integer.parseInt(position[1]))
+                .direction(Direction.valueOf(position[2])).build();
     }
 
     private Position right(Position current) {
