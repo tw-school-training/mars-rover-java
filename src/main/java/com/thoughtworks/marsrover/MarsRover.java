@@ -5,7 +5,6 @@ public class MarsRover {
     private Position current;
 
     public MarsRover() {
-        current = new Position(0, 0, Direction.N);
     }
 
     public MarsRover(Position position) {
