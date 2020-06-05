@@ -99,7 +99,9 @@ public class MarsRover {
                 }
                 break;
             case W:
-                x--;
+                if (x > bound.getMinX()) {
+                    x--;
+                }
                 break;
             case N:
                 if (y < bound.getMaxY()) {

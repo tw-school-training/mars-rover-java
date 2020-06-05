@@ -9,4 +9,5 @@ public class Bound {
     private Integer maxY;
     private Integer minY;
     private Integer maxX;
+    private Integer minX;
 }
