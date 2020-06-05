@@ -11,6 +11,7 @@ public class MarsRover {
 
     public MarsRover(Position position) {
         current = position;
+        bound = Bound.builder().build();
     }
 
     public MarsRover(Position position, Bound bound) {
@@ -28,20 +29,24 @@ public class MarsRover {
         }
 
         Position result = current;
-        for (int commandIndex = 0; commandIndex < behaviorCommand.length(); commandIndex++) {
-            switch (behaviorCommand.charAt(commandIndex)) {
-                case 'M':
-                    result = move(result);
-                    break;
-                case 'L':
-                    result = left(result);
-                    break;
-                case 'R':
-                    result = right(result);
-                    break;
+        try {
+            for (int commandIndex = 0; commandIndex < behaviorCommand.length(); commandIndex++) {
+                switch (behaviorCommand.charAt(commandIndex)) {
+                    case 'M':
+                        result = move(result);
+                        break;
+                    case 'L':
+                        result = left(result);
+                        break;
+                    case 'R':
+                        result = right(result);
+                        break;
+                }
             }
+        } catch (OutOfBoundsException e) {
         }
 
+        current = result;
         return result;
     }
 
@@ -94,26 +99,42 @@ public class MarsRover {
         int y = current.getY();
         switch (current.getDirection()) {
             case E:
-                if (x < bound.getMaxX()) {
+                if (isInMaxBound(x, bound.getMaxX())) {
                     x++;
+                } else {
+                    throw new OutOfBoundsException("out of max x.");
                 }
                 break;
             case W:
-                if (x > bound.getMinX()) {
+                if (isInMinBound(x, bound.getMinX())) {
                     x--;
+                } else {
+                    throw new OutOfBoundsException("out of min x.");
                 }
                 break;
             case N:
-                if (y < bound.getMaxY()) {
+                if (isInMaxBound(y, bound.getMaxY())) {
                     y++;
+                } else {
+                    throw new OutOfBoundsException("out of max y.");
                 }
                 break;
             case S:
-                if (y > bound.getMinY()) {
+                if (isInMinBound(y, bound.getMinY())) {
                     y--;
+                } else {
+                    throw new OutOfBoundsException("out of min y.");
                 }
 
         }
         return Position.builder().x(x).y(y).direction(current.getDirection()).build();
+    }
+
+    private boolean isInMinBound(int value, Integer min) {
+        return min == null || value > min;
+    }
+
+    private boolean isInMaxBound(int value, Integer max) {
+        return max == null || value < max;
     }
 }
