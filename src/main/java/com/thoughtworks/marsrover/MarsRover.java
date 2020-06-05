@@ -4,11 +4,18 @@ public class MarsRover {
 
     private Position current;
 
+    private Bound bound;
+
     public MarsRover() {
     }
 
     public MarsRover(Position position) {
         current = position;
+    }
+
+    public MarsRover(Position position, Bound bound) {
+        current = position;
+        this.bound = bound;
     }
 
     public Position execute(String command) {
@@ -93,7 +100,9 @@ public class MarsRover {
                 x--;
                 break;
             case N:
-                y++;
+                if (y < bound.getMaxY()) {
+                    y++;
+                }
                 break;
             case S:
                 y--;

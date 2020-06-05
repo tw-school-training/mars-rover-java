@@ -158,4 +158,16 @@ public class MarsRoverTest {
         Assert.assertEquals(4, position.getY());
         Assert.assertEquals(Direction.W, position.getDirection());
     }
+
+    @Test
+    public void should_just_move_to_max_y_given_command_is_MM_and_facing_is_N_and_max_y_of_bound() {
+        MarsRover marsRover = new MarsRover(Position.builder().x(0).y(0).direction(Direction.N).build(),
+                Bound.builder().maxY(2).build());
+
+        Position position = marsRover.execute("MM");//y+1,W,x-1,x-1,N,y+1,y+1,y+1,W
+
+        Assert.assertEquals(0, position.getX());
+        Assert.assertEquals(2, position.getY());
+        Assert.assertEquals(Direction.N, position.getDirection());
+    }
 }
