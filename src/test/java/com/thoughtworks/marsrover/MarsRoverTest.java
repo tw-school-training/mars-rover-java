@@ -219,4 +219,15 @@ public class MarsRoverTest {
         Assert.assertEquals(Direction.W, position.getDirection());
     }
 
+    @Test
+    public void should_turn_left_successfully_given_command_is_L_and_facing_is_E_and_at_bound(){
+        MarsRover marsRover = new MarsRover(Position.builder().x(-2).y(0).direction(Direction.E).build(),
+                Bound.builder().minX(-2).build());
+
+        Position position = marsRover.execute("L");
+
+        Assert.assertEquals(-2, position.getX());
+        Assert.assertEquals(0, position.getY());
+        Assert.assertEquals(Direction.N, position.getDirection());
+    }
 }
